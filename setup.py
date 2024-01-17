@@ -19,7 +19,7 @@ info = {
     "packages": ["pennylane_alice_bob"],
     "entry_points": {
         "pennylane.plugins": [
-            "alicebob.simulator = pennylane_alice_bob:SimulatorDevice",
+            "alicebob.simulator = pennylane_alice_bob:AliceBobSimulatorDevice",
         ]
     },
     "description": "PennyLane plugin for Alice & Bob hardware",
