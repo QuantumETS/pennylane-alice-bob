@@ -1,5 +1,5 @@
 import pennylane as qml
-# from qiskit_alice_bob_provider import AliceBobRemoteProvider
+from qiskit_alice_bob_provider import AliceBobRemoteProvider
 # from qiskit import QuantumCircuit, execute, transpile
 
 # provider = AliceBobLocalProvider()
@@ -36,9 +36,6 @@ import matplotlib.pyplot as plt
 shots = 10000
 provider = AliceBobLocalProvider()
 
-
-backend = provider.get_backend()
-
 circ = QuantumCircuit(2,2)
 circ.reset(0)
 circ.h(0)
@@ -51,11 +48,15 @@ plt.show()
 #[<ProcessorSimulator(name=EMU:6Q:PHYSICAL_CATS)>, <ProcessorSimulator(name=EMU:40Q:PHYSICAL_CATS)>, <ProcessorSimulator(name=EMU:40Q:LOGICAL_TARGET)>, <ProcessorSimulator(name=EMU:15Q:LOGICAL_EARLY)>, <ProcessorSimulator(name=EMU:1Q:LESCANNE_2020)>]
 for proc_simulator in provider.backends():
     print(proc_simulator.name)
+# print("remote possible backends")
+# ab = AliceBobRemoteProvider('MY_API_KEY')
+# for proc_simulator in ab.backends():
+#     print(proc_simulator.name)
 
-
-def configured_backend():
-    backend = AliceBobLocalProvider().get_backend('EMU:15Q:LOGICAL_EARLY')
-    backend.options.update_options(...)
+def configured_backend(back):
+    backend = AliceBobLocalProvider().get_backend(back)
     return backend
 
-dev = qml.device('qiskit.remote', wires=2, backend=configured_backend())
+myapi="supge"
+alice_backend='EMU:15Q:LOGICAL_EARLY'
+dev = qml.device('qiskit.remote', wires=2, backend=configured_backend(alice_backend))
