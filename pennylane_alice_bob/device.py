@@ -9,7 +9,7 @@ class SimulatorDevice(QubitDevice):
 
     name = "Alice & Bob's custom PennyLane plugin"
     short_name = "alicebob.simulator"
-    pennylane_requires = ">=0.34.0"
+    pennylane_requires = ">=0.28.0"
     version = "0.0.1"
     author = "QuantumETS"
 
