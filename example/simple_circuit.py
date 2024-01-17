@@ -29,3 +29,25 @@ print(circuit(0.2, 0.1, 0.3))
 tape = qml.tape.QuantumScript([qml.Hadamard(0)], [qml.counts(wires=0)],shots=1)
 
 print(dev.execute(tape))
+from qiskit_alice_bob_provider.local.provider import AliceBobLocalProvider
+from qiskit import QuantumCircuit, execute
+from qiskit.visualization import plot_histogram
+import matplotlib.pyplot as plt
+shots = 10000
+provider = AliceBobLocalProvider()
+
+
+backend = provider.get_backend('EMU:15Q:LOGICAL_EARLY')
+
+circ = QuantumCircuit(2,2)
+circ.reset(0)
+circ.h(0)
+circ.cx(0,1)
+circ.measure(0,0)
+circ.measure(1,1)
+
+circ.draw('mpl')
+plt.show()
+#[<ProcessorSimulator(name=EMU:6Q:PHYSICAL_CATS)>, <ProcessorSimulator(name=EMU:40Q:PHYSICAL_CATS)>, <ProcessorSimulator(name=EMU:40Q:LOGICAL_TARGET)>, <ProcessorSimulator(name=EMU:15Q:LOGICAL_EARLY)>, <ProcessorSimulator(name=EMU:1Q:LESCANNE_2020)>]
+for proc_simulator in provider.backends():
+    print(proc_simulator.name)
