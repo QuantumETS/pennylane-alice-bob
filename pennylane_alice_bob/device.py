@@ -16,10 +16,15 @@ class SimulatorDevice(QubitDevice):
     operations = {"PauliX", "RX", "CNOT"}
     observables = {"PauliZ", "PauliX", "PauliY", "Hadamard", "Identity"}
 
-
+    # def configured_backend():
+    #     backend = AliceBobLocalProvider().get_backend('EMU:15Q:LOGICAL_EARLY')
+    #     backend.options.update_options(...)
+    #     return backend
+    
     def __init__(self, shots=1024, hardware_options=None):
         super().__init__(wires=24, shots=shots)
         self.hardware_options = hardware_options
+        #this = qml.device('qiskit.remote', wires=2, backend=configured_backend())
 
     def apply(self, operation, **kwargs):
         if operation == "PauliX":
