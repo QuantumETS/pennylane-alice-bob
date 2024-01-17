@@ -3,6 +3,7 @@ This module contains the device class for constructing Alice & Bob's custom devi
 """
 import warnings
 from pennylane import QubitDevice, DeviceError
+import pennylane as qml
 
 class SimulatorDevice(QubitDevice):
     """Alice & Bob's custom device for PennyLane."""
@@ -20,11 +21,11 @@ class SimulatorDevice(QubitDevice):
     #     backend = AliceBobLocalProvider().get_backend('EMU:15Q:LOGICAL_EARLY')
     #     backend.options.update_options(...)
     #     return backend
-    
+
     def __init__(self, shots=1024, hardware_options=None):
         super().__init__(wires=24, shots=shots)
         self.hardware_options = hardware_options
-        #this = qml.device('qiskit.remote', wires=2, backend=configured_backend())
+        #self = qml.device('qiskit.remote', wires=2, backend=self.configured_backend())
 
     def apply(self, operation, **kwargs):
         if operation == "PauliX":
