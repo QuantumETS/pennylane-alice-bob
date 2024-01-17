@@ -29,7 +29,7 @@ class SimulatorDevice(QubitDevice):
         elif operation == "CNOT":
             self._apply_cnot(kwargs["wires"][0], kwargs["wires"][1])
 
-    def execute(self, observables, **kwargs):
+    def execute(self, observables, **kwargs):        
         results = {}
         for o in observables:
             results[o] = 1.0
