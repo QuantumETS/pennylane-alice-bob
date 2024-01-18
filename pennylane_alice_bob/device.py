@@ -44,7 +44,7 @@ class AliceBobSimulatorDevice(qml.devices.Device):
         provider = cls.configured_backend(alice_backend, api_token)
 
         class stub:
-            n_qubits = 3
+            n_qubits = wires
         def conf():
             return stub()
         
