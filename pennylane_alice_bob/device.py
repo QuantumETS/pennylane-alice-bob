@@ -49,7 +49,6 @@ class AliceBobSimulatorDevice(qml.devices.Device):
             return stub()
         
         provider.configuration = conf
-        print(provider)
         if provider == None:
             backend_names = ""
             for element in AliceBobLocalProvider().backends():
