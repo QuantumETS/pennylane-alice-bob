@@ -1,34 +1,42 @@
 # Alice and Bob Quantum Plugin Wrapper for PennyLane
 
 ## Overview
-This repository contains a non-official wrapper for the "Alice and Bob" Quantum Plugin, originally developed for Qiskit, now adapted for use with PennyLane. This wrapper allows users to leverage the unique features of the Alice and Bob Quantum Plugin within the PennyLane ecosystem.
+This repository hosts an unofficial wrapper for the Alice and Bob Quantum Plugin, originally crafted for Qiskit and now made compatible with PennyLane. This integration facilitates the utilization of the distinctive functionalities of the Alice and Bob Quantum Plugin within PennyLane's quantum computing framework.
 
 ## Features
-- Seamless integration with PennyLane.
-- Access to the unique quantum computing capabilities of the Alice and Bob Quantum Plugin.
-- Available backends : 
+- Smooth integration with PennyLane, enhancing its quantum computing capabilities.
+- Access to a variety of unique features offered by the Alice and Bob Quantum Plugin.
+- Supports multiple backends, including:
+  - EMU:6Q:PHYSICAL_CATS
+  - EMU:40Q:PHYSICAL_CATS
+  - EMU:40Q:LOGICAL_TARGET
+  - EMU:15Q:LOGICAL_EARLY
+  - EMU:1Q:LESCANNE_2020
 
-    EMU:6Q:PHYSICAL_CATS 
+## Example Use Cases
+The following examples demonstrate how to configure the Alice and Bob Quantum Plugin within the PennyLane environment:
 
-    EMU:40Q:PHYSICAL_CATS 
 
-    EMU:40Q:LOGICAL_TARGET 
+### Local Alice & Bob simulator (no API token required)
 
-    EMU:15Q:LOGICAL_EARLY 
-
-    EMU:1Q:LESCANNE_2020 
-
-## Usecases examples
-
-```py
-dev = qml.device("alicebob.simulator", wires=1,shots=10,alice_backend="EMU:40Q:PHYSICAL_CATS") # example to use local alice & bob simulator (no api_token)
-
-dev = qml.device("alicebob.simulator", wires=1,shots=10,alice_backend="EMU:1Q:LESCANNE_2020",api_token="MY_API_TOKEN") # example to use alice & bob quantum hardware (has api_token)
+```python
+dev = qml.device("alicebob.qubit", wires=1, shots=10, alice_backend="EMU:40Q:PHYSICAL_CATS")
 ```
 
+### Alice & Bob quantum hardware (API token required)
+
+```python
+dev = qml.device("alicebob.qubit", wires=1, shots=10, alice_backend="EMU:1Q:LESCANNE_2020", api_token="MY_API_TOKEN")
+```
+
+### Complete Example
+
+You can find a complete example in the [examples folder](./examples/sample_circuit.ipynb). In this example we show how to use the Alice and Bob Quantum Plugin with PennyLane to run a simple quantum circuit on multiple backends and perform a simple Grover search.
+
+
 ## Installation
-To install the wrapper, simply run:
+Install the wrapper with ease by executing the following command:
+
 ```bash
 pip install git+https://github.com/QuantumETS/pennylane-alice-bob.git@master
 ```
-

@@ -6,7 +6,7 @@ from setuptools import setup
 with open("pennylane_alice_bob/_version.py") as f:
     version = f.readlines()[-1].split()[-1].strip("\"'")
 
-requirements = ["pennylane>=0.15", "numpy", "python-dateutil", "requests"]
+requirements = ["pennylane>=0.15", "numpy", "python-dateutil", "requests", "qiskit_alice_bob_provider", "pennylane-qiskit", "matplotlib"]
 
 info = {
     # 'name' is the name that will be used by pip for installation
@@ -19,7 +19,7 @@ info = {
     "packages": ["pennylane_alice_bob"],
     "entry_points": {
         "pennylane.plugins": [
-            "alicebob.simulator = pennylane_alice_bob:AliceBobSimulatorDevice",
+            "alicebob.qubit = pennylane_alice_bob:AliceBobQubitDevice",
         ]
     },
     "description": "PennyLane plugin for Alice & Bob hardware",
