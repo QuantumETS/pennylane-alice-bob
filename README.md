@@ -38,5 +38,5 @@ You can find a complete example in the [examples folder](./examples/sample_circu
 Install the wrapper with ease by executing the following command:
 
 ```bash
-pip install git+https://github.com/QuantumETS/pennylane-alice-bob.git@master
+pip install git+https://github.com/QuantumETS/pennylane-alice-bob.git@main
 ```
