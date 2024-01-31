@@ -23,13 +23,14 @@ class AliceBobQubitDevice(qml.Device):
     author = "QuantumETS"
 
     @staticmethod
-    def configured_backend(backend, api_key=''):
+    def configured_backend(backend, api_key='', **kwargs):
         """
         Configures and returns the specified backend.
 
         Parameters:
         - backend (str): The name of the backend to use.
         - api_key (str, optional): The API key for remote access. Defaults to ''.
+        - **kwargs: Arbitrary keyword arguments for backend configuration (kappa_1, kappa_2, ...).
         
         Returns:
         - The configured backend.
@@ -38,27 +39,14 @@ class AliceBobQubitDevice(qml.Device):
             if backend.strip() == element.name.strip():
                 print(f"Using alice & bob {backend} backend...")
                 if len(api_key) > 1:
-                    return AliceBobRemoteProvider(api_key).get_backend(backend)
+                    return AliceBobRemoteProvider(api_key).get_backend(backend, **kwargs)
                 else:
-                    return AliceBobLocalProvider().get_backend(backend)
+                    return AliceBobLocalProvider().get_backend(backend, **kwargs)
         
         warnings.warn(f"Backend '{backend}' not found. Using default local backend.")
-        return AliceBobLocalProvider().get_backend('default')
+        return AliceBobLocalProvider().get_backend('default', **kwargs)
 
-    def __init__(self, wires=None, shots=None, seed="global", max_workers=None, api_token=""):
-        """
-        Initializes the AliceBobQubitDevice instance.
-
-        Parameters:
-        - wires (int, optional): The number of wires. Defaults to None.
-        - shots (int, optional): The number of shots. Defaults to None.
-        - seed (str, optional): The seed for random number generators. Defaults to "global".
-        - max_workers (int, optional): The maximum number of workers. Defaults to None.
-        - api_token (str, optional): The API token for remote access. Defaults to "".
-        """
-        pass
-
-    def __new__(cls, wires=1, shots=1024, seed="global", max_workers=None, alice_backend="EMU:6Q:PHYSICAL_CATS", api_token=""):
+    def __new__(cls, wires=1, shots=1024, seed="global", max_workers=None, alice_backend="EMU:6Q:PHYSICAL_CATS", api_token="", **kwargs):
         """
         Creates a new instance or reuses an existing instance of the AliceBobQubitDevice.
 
@@ -73,7 +61,7 @@ class AliceBobQubitDevice(qml.Device):
         Returns:
         - An instance of qml.Device configured with the specified backend.
         """
-        provider = cls.configured_backend(alice_backend, api_token)
+        provider = cls.configured_backend(alice_backend, api_token, **kwargs)
 
         class Stub:
             n_qubits = wires

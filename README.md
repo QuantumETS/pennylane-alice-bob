@@ -1,7 +1,7 @@
 # Alice and Bob Quantum Plugin Wrapper for PennyLane
 
 ## Overview
-This repository hosts an unofficial wrapper for the Alice and Bob Quantum Plugin, originally crafted for Qiskit and now made compatible with PennyLane. This integration facilitates the utilization of the distinctive functionalities of the Alice and Bob Quantum Plugin within PennyLane's quantum computing framework.
+This repository serves as an unofficial PennyLane wrapper for the Alice and Bob Quantum Plugin, initially developed for Qiskit as detailed in the Alice&Bob Qiskit Provider. This wrapper extends the compatibility of the original Qiskit-based plugin to the PennyLane quantum computing framework, enabling users to leverage the unique features of the Alice and Bob Quantum Plugin within PennyLane's ecosystem. 
 
 ## Features
 - Smooth integration with PennyLane, enhancing its quantum computing capabilities.
@@ -20,8 +20,10 @@ The following examples demonstrate how to configure the Alice and Bob Quantum Pl
 ### Local Alice & Bob simulator (no API token required)
 
 ```python
-dev = qml.device("alicebob.qubit", wires=1, shots=10, alice_backend="EMU:40Q:PHYSICAL_CATS")
+dev = qml.device("alicebob.qubit", wires=1, shots=10, alice_backend="EMU:40Q:PHYSICAL_CATS", average_nb_photons=4, kappa_2=1e4)
 ```
+
+** For detailed information on the specialized parameters, please consult the repository for the Qiskit Alice and Bob provider.
 
 ### Alice & Bob quantum hardware (API token required)
 
